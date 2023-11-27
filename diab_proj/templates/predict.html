@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Predict page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'Diabetes/images/image2.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 98vw;
+            height: 90vh;
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: max-content;
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            padding: 20px 40px;
+        }
+        h1{
+            color: #0054b3;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+        input[type=submit]:hover {
+            backface-visibility: visible;
+            background-color: rgba(5, 25, 243, 0.8);
+        }
+        input[type=submit]{
+            background-color: rgba(7, 82, 243, 0.5);
+            border: 2px;
+            border-radius: 20px;
+            color: white;
+            font-size: 20px;
+            padding: 10px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        tr {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 10px;
+        }
+        .result {
+            color: rgba(190, 4, 48, 0.9);
+            font-size: 40px;
+            font-weight: 600;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+        <h1>Please enter your details!</h1>
+        <form action="result" >
+            <table>
+                <tr>
+                    <td align="right">Gender  [For Male:1 and Female:0]:</td>
+                    <td align="left"> <input type="text" name="n1"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Age :</td>
+                    <td align="left"> <input type="text" name="n2"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Hypertension Value :</td>
+                    <td align="left"> <input type="text" name="n3"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Heart_disease [ Yes:1 & No:0] :</td>
+                    <td align="left"> <input type="text" name="n4"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Smoking History [Never: 0 | NoInfo: 1 | Former: 2 | Current: 3]:</td>
+                    <td align="left"> <input type="text" name="n5"> </td>
+                </tr>
+                <tr>
+                    <td align="right">BMI:</td>
+                    <td align="left"> <input type="text" name="n6"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Hemoglobin  A1c Level:</td>
+                    <td align="left"> <input type="text" name="n7"> </td>
+                </tr>
+                <tr>
+                    <td align="right">Blood Glucose level:</td>
+                    <td align="left"> <input type="text" name="n8"> </td>
+                </tr>
+            </table>
+            <input type="submit">
+        </form>
+            <div class="result">
+                {{ result2 }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
