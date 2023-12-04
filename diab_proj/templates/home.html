@@ -2,58 +2,744 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <style type = text/css>
-        div{
-            color: #ffffff;
+    <style type=text/css>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: .2s linear;
         }
-        h1{
-            color: #171616;
-            font-family: arial, sans-serif;
-            font-size: 60px;
-            font-weight: bold;
-            margin-top: 200px;
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
         }
-        h2{
-            color: #210909;
-            font-family: arial, sans-serif;
-            font-size: 15px;
-            font-weight: bold;
-            margin-top: 400px;
+
+        section {
+            padding: 5rem 9%;
         }
-        body {
-            background-image: url("{% static 'Diabetes/images/image1.jpg' %}");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
+
+        .btn {
+            display: inline-block;
+            border: 0.2rem solid black;
+            color: black;
+            cursor: pointer;
+            background: none;
+            font-size: 1.7rem;
+            padding: 1rem 3rem;
         }
-        input[type=submit]:hover{
-            backface-visibility: visible;
-            background-color: rgba(33, 9, 9, 0.8);
+
+        .btn:hover {
+            background: black;
+            color: white;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 4rem;
+            color: #10221b;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 9%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .header.active {
+            background: #fff;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+
+        .header .logo {
+            margin-right: auto;
+            font-size: 2.5rem;
+            color: black;
+            font-weight: bolder;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+
+        .wrapper {
+            padding: 0;
+            margin: 0;
+        }
+        .wrapper1 {
+            margin-left: auto;
+            margin-right: auto;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            max-width: 550px;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        .wrapper1 .title1 h1 {
+            color: green;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 3.5rem;
 
         }
-        input[type=submit]{
-            background-color: rgba(33, 9, 9, 0.5);
-            border: 2px;
-            border-radius: 10px;
-            font-size: 20px;
-            color: white;
-            padding: 16px 32px;
+
+        .contact-form {
+            display: flex;
+        }
+
+        .input-fields {
+            display: flex;
+            flex-direction: column;
+            margin-right: 4%;
+        }
+
+        .input-fields,
+        .msg {
+            width: 60%;
+        }
+
+        .input-fields .input,
+        .msg textarea {
+            margin: 10px 0;
+            background: transparent;
+            border: 0px;
+            border-bottom: 2px solid #5f66618f;
+            padding: 10px;
+            color: black;
+            width: 100%;
+        }
+
+        .msg textarea {
+            height: 192px;
+        }
+
+        .msg .btn1 {
+            margin-top: 1rem;
+            display: inline-block;
+            border: 0.2rem solid black;
+            color: black;
             cursor: pointer;
-            margin-top: 15px;
+            background: none;
+            font-size: 1.7rem;
+            padding: 1rem 3rem;
+        }
+
+        i {
+            color: green;
+        }
+
+        .header .navbar a {
+            margin-left: 2rem;
+            font-size: 1.7rem;
+            color: black;
+        }
+
+        .header .navbar a:hover {
+            color: green;
+        }
+
+        .header .navbar #nav-close {
+            font-size: 5rem;
+            cursor: pointer;
+            color: black;
+            display: none;
+        }
+
+        .header .icons a,
+        .header .icons div {
+            font-size: 2.5rem;
+            margin-left: 2rem;
+            cursor: pointer;
+            color: black;
+        }
+
+        .header.icons a:hover,
+        .header.icons div:hover {
+            color: green;
+        }
+
+        .header #menu-btn {
+            display: none;
+        }
+
+        .search-form {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transform: translateY(-110%);
+        }
+
+        .search-form.active {
+            transform: translateY(0%);
+        }
+
+        #close-search {
+            position: absolute;
+            top: 1.5rem;
+            right: 2.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 5rem;
+        }
+
+        #close-search:hover {
+            color: green;
+        }
+
+        form {
+            width: 70rem;
+            margin: 0 2rem;
+            padding-bottom: 2rem;
+            border-bottom: .2rem solid white;
+            display: flex;
+            align-items: center;
+        }
+
+        form input {
+            width: 100%;
+            font-size: 2rem;
+            color: white;
+            text-transform: none;
+            background: none;
+            padding-right: 2rem;
+        }
+
+        form input::placeholder {
+            color: #aaa;
+        }
+
+        form label {
+            font-size: 3rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        form label:hover {
+            color: green;
+        }
+
+        .home {
+            padding: 0;
+        }
+
+        .home .box {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-size: cover !important;
+            background-position: center !important;
+            justify-content: flex-end;
+            padding: 2rem 9%;
+        }
+
+        .home .content {
+            width: 55rem;
+            height: 50rem;
+        }
+
+        .home .content span {
+            font-size: 4rem;
+            color: black;
+        }
+
+        .home .content h3 {
+            font-size: 5rem;
+            color: green;
+            padding-top: .5rem;
+            text-transform: uppercase;
+        }
+
+        .home .content p {
+            line-height: 2;
+            color: black;
+            font-size: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .category .box-container {
+            display: -ms-grid;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(29rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category .box-container .box {
+            text-align: center;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category .box-container .box img {
+            height: 15rem;
+            width: 15rem;
+            margin-bottom: 1rem;
+        }
+
+        .category .box-container .box h3 {
+            margin-top: 1rem;
+            font-size: 4rem;
+            color: #219150;
+        }
+
+        .category .box-container .box p {
+            font-size: 1.5rem;
+            color: #10221b;
+            padding: 1rem 0;
+            line-height: 2;
+            text-align: justify;
+            width: 80%;
+        }
+
+        .packages {
+            background: #eee;
+        }
+
+        .packages .box-container {
+            display: -ms-grid;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+            gap: 1rem;
+        }
+
+        .packages .box-container .box {
+            text-align: center;
+            background: #fff;
+            border: 0.2rem solid #10221b;
+            -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            border-radius: .5rem;
+        }
+
+        .packages .box-container .box:hover {
+            background: #10221b;
+        }
+
+        .packages .box-container .box:hover .content>* {
+            color: #fff;
+        }
+
+        .packages .box-container .box:hover .btn {
+            border-color: #fff;
+        }
+
+        .packages .box-container .box:hover .btn:hover {
+            background: #fff;
+            color: #10221b;
+        }
+
+        .packages .box-container .box .image {
+            height: 30rem;
+            overflow: hidden;
+            padding: 2rem;
+            padding-bottom: 0;
+            border-radius: .5rem;
+        }
+
+        .packages .box-container .box .image img {
+            height: 100%;
+            width: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            border-radius: .5rem;
+        }
+
+        .packages .box-container .box .content {
+            padding: 2rem;
+        }
+
+        .packages .box-container .box .content h3 {
+            font-size: 2rem;
+            color: #10221b;
+        }
+
+        .packages .box-container .box .content p {
+            font-size: 1.5rem;
+            color: #10221b;
+            padding: 1rem 0;
+            line-height: 2;
+        }
+
+        .packages .box-container .box .content .price {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .footer {
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .footer .box-container {
+            display: -ms-grid;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .footer .box-container .box h3 {
+            font-size: 2rem;
+            padding: 1.5rem 0;
+            color: #fff;
+        }
+
+        .footer .box-container .box a {
+            display: block;
+            font-size: 1.4rem;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        .footer .box-container .box a i {
+            color: white;
+            padding-right: .5rem;
+        }
+
+        .footer .box-container .box a:hover {
+            color: white;
+        }
+
+        .footer .box-container .box a:hover i {
+            padding-right: 2rem;
+        }
+
+        .footer .credit {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding: 1rem;
+            padding-top: 2.5rem;
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        .footer .credit span {
+            color: white;
+        }
+
+        @media (max-width:1200px) {
+            .header {
+                padding: 2rem;
+            }
+
+            section {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width:991px) {
+            html {
+                font-size: 55%;
+            }
+
+            .home .box {
+                padding: 3rem;
+                justify-content: center;
+                background-position: right !important;
+            }
+
+            .home .box .content {
+                text-align: center;
+            }
+
+            .home .box .content span {
+                font-size: 3rem;
+            }
+
+            .home .box .content h3 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width:768px) {
+            .header #menu-btn {
+                display: inline-block;
+            }
+
+            .header .navbar {
+                position: fixed;
+                top: 0;
+                left: -110%;
+                background: white;
+                z-index: 10000;
+                width: 35rem;
+                height: 100%;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .header .navbar.active {
+                left: 0;
+                box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
+            }
+
+            .header .navbar a {
+                margin: 1rem 0;
+                font-size: 3rem;
+            }
+
+            .header .navbar #nav-close {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 2rem;
+            }
+
+            .contact-form {
+                flex-direction: column;
+            }
+
+            .msg textarea {
+                height: 80px;
+            }
+
+            .input-fields,
+            .msg {
+                width: 100%;
+            }
+        }
+
+        .formPage {
+            padding: 0;
+            margin: 0;
+            border-bottom: none;
+        }
+
+
+        @media (max-width:450px) {
+            html {
+                font-size: 50%;
+            }
+
+            .heading {
+                font-size: 3rem;
+            }
         }
     </style>
-</head>    
+</head>
+
 <body>
-    <div align=" center ">
-        <h1>
-            DIABETES PREDICTION SYSTEM
-        </h1>
-        <form action = "predict">
-            <input type="submit" value = "Let's Get started!">
-        </form>
-    </div>
+    <header class="header">
+        <a href="#home" class="logo"><img style="margin-right: 5px;" width="40px" class="fas fa-hiking"
+                src="../static/Diabetes/images/logo.png" alt="">Diabetes Prediction</a>
+
+        <nav class="navbar">
+            <div id="nav-close" class="fas fa-times"></div>
+            <a href="#home">home</a>
+            <a href="#category">Statistics</a>
+            <a href="#packages">Team</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+
+        <div class="wrapper">
+
+            <div class="box" style="background: url('../static/Diabetes/images/bg.png') no-repeat;">
+                <div class="content">
+                    <h3>Diabetes Prediction</h3>
+                    <h3> System</h3>
+                    <p>“Don't let diabetes stand in your way to enjoying your life, come together and fight against it.”
+                    </p>
+                    <form class="formPage" action="predict">
+                        <button class="btn">Let's Predict</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="category" id="category">
+        <h1 class="heading">Diabetes Cases Statistics</h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="../static/Diabetes/images/data-1.jpg" alt="">
+                <h3>Cases in Global</h3>
+                <p> June 22, 2023 – More than half a billion people are living with diabetes worldwide,
+                    affecting men, women, and children of all ages in every country, and that number is projected to
+                    more than double to 1.3 billion people in the next 30 years.</p>
+            </div>
+            <div class="box">
+                <img src="../static/Diabetes/images/data2.jpg" alt="">
+                <h3>Cases in India</h3>
+                <p>In India, there are estimated 77 million people above the age of 18 years are suffering from diabetes (type 2) and nearly 25 million are prediabetics (at a higher risk of developing diabetes in near future).</p>
+            </div>
+            <div class="box">
+                <img src="../static/Diabetes/images/data3.jpg" alt="">
+                <h3>Cases in Asia</h3>
+                <p>In Asia-Pacific, about 227 million people live with type 2 diabetes and about half of them are undiagnosed and unaware of developing long-term complications. </p>
+            </div>
+        </div>
+    </section>
+    <section class="packages" id="packages">
+        <h1 class="heading">developers Team</h1>
+        <div class="box-container">
+            <div class="box">
+                <div class="image">
+                    <img src="../static/Diabetes/images/gulab.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Gulabpreet Singh</h3>
+                    <p>Gulabpreet Singh, a proficient B.Tech CSE AIML student, possesses extensive expertise in
+                        full-stack development, data science, and machine learning. His hands-on experience showcases a
+                        strong foundation in creating robust, end-to-end solutions. Gulabpreet's innovative approach and
+                        technical acumen make him a valuable asset, reflecting a dynamic skill set poised for impactful
+                        contributions in the field.</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="../static/Diabetes/images/johnson.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>John L. Songate</h3>
+                    <p>John L. Songate, B.Tech CSE AIML student, possesses versatile expertise in Front-end
+                        development, Data Science, Machine Learning, and Android app development. With hands-on
+                        experience, his skills encompass a wide spectrum of technological domains, making him a
+                        well-rounded and adept professional in the dynamic field of computer science.</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="../static/Diabetes/images/bhavi.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Bhavika</h3>
+                    <p>Bhavika, B.Tech CSE AIML student, excels in web development, data science, and
+                        machine learning. With hands-on expertise, she seamlessly navigates the realms of technology,
+                        showcasing a deep understanding of coding and analytical skills. Bhavika's dynamic skill set and
+                        passion for innovation make her a standout contributor in the ever-evolving field of computer
+                        science.</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="image">
+                    <img src="../static/Diabetes/images/him.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Himanshu</h3>
+                    <p>Himanshu, B.Tech CSE AIML student with a strong foundation in Deep Learning and Machine Learning.
+                        Adept at leveraging cutting-edge technologies to develop innovative solutions. Proven hands-on
+                        experience reflects a keen understanding of complex algorithms. Committed to advancing the field
+                        through continuous learning and practical application. Ready to contribute expertise to
+                        challenging projects in the ever-evolving landscape of artificial intelligence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <div class="wrapper1">
+            <div class="title1">
+                <h1>contact us form</h1>
+            </div>
+            <div class="contact-form">
+                <form method="post" action="contact_us.php">
+                    <div class="input-fields">
+                        <input type="text" class="input" placeholder="Name" name="name">
+                        <input type="email" class="input" placeholder="Email Address" name="email"
+                            pattern=".+@gmail\.com">
+                        <input type="phone" class="input" placeholder="Phone" name="phone">
+                        <input type="text" class="input" placeholder="Subject" name="subject">
+                    </div>
+                    <div class="msg">
+                        <textarea placeholder="Message" name="message"></textarea>
+                        <div class="btn1"><button type="submit">Submit</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="footer" style="background-color: #219150;">
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick links</h3>
+                <a href="#home">home</a>
+                <a href="#packages">packages</a>
+                <a href="#query">query</a>
+            </div>
+            <div class="box">
+                <h3>extra links</h3>
+                <a href="#contact">ask questions</a>
+                <a href="#">terms of use</a>
+                <a href="#">privacy policy</a>
+            </div>
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="tel:+918571994476"> <i class="fas fa-phone"></i> +91 8571994476 </a>
+                <a href="mailto:gulabpreets.cse@gmail.com"> <i class="fas fa-envelope"></i>
+                    gulabpreets.cse@gmail.com</a>
+                <a href="#"> <i class="fas fa-map"></i> Delhi, india - 110001 </a>
+            </div>
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="https://www.instagram.com/who/?igshid=M2RkZGJiMzhjOQ%3D%3D"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="https://www.linkedin.com/in/john-songate-727097235/"> <i class="fab fa-linkedin"></i> linkedin
+                </a>
+                <a href="https://github.com/songatejohn7"> <i class="fab fa-github"></i> github </a>
+            </div>
+        </div>
+        <div class="credit"> All rights reserved by 2023 -2024</div>
+    </section>
+
+    <script>
+        let navbar = document.querySelector('.header .navbar');
+        document.querySelector('#menu-btn').onclick = () => {
+            navbar.classList.add('active');
+        }
+        document.querySelector('#nav-close').onclick = () => {
+            navbar.classList.remove('active');
+        }
+        window.onscroll = () => {
+            navbar.classList.remove('active');
+            if (window.scrollY > 0) {
+                document.querySelector('.header').classList.add('active');
+            } else {
+                document.querySelector('.header').classList.remove('active');
+            }
+        };
+        window.onload = () => {
+            if (window.scrollY > 0) {
+                document.querySelector('.header').classList.add('active');
+            } else {
+                document.querySelector('.header').classList.remove('active');
+            }
+        };
+    </script>
 </body>
+
 </html>
